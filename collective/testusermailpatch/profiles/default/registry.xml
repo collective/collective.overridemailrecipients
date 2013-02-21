@@ -1,0 +1,7 @@
+<registry>
+  <records interface="collective.testusermailpatch.configpanel.IMailPatchSettings"
+           prefix="collective.testusermailpatch.configpanel.IMailPatchSettings">
+    <value key="email"></value>
+    <value key="enabled">True</value>
+  </records>
+</registry>

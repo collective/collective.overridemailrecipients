@@ -1,0 +1,36 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:five="http://namespaces.zope.org/five"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    xmlns:i18n="http://namespaces.zope.org/i18n"
+    xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+    xmlns:monkey="http://namespaces.plone.org/monkey"
+    i18n_domain="collective.testusermailpatch">
+
+  <five:registerPackage package="." initialize=".initialize" />
+
+  <genericsetup:registerProfile
+      name="default"
+      title="collective.testusermailpatch"
+      directory="profiles/default"
+      description="Installs the collective.testusermailpatch package"
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+      />
+
+    <include package="collective.monkeypatcher" />
+
+    <monkey:patch
+        description="Patch to send all mails to specified account in test environment"
+        class="Products.MailHost.MailHost.MailHost"
+        original="_send"
+        replacement=".patches.patchedSend"
+        />
+
+    <browser:page
+        name="testusermailpatch-settings"
+        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+        permission="cmf.ManagePortal"
+        class=".configpanel.SettingsView"
+    />
+
+</configure>
