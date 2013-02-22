@@ -1,14 +1,31 @@
 from zope.component import getUtility
 from plone.registry.interfaces import IRegistry
 from zope.sendmail.delivery import DirectMailDelivery, QueuedMailDelivery
-
+from copy import deepcopy
+from email.Message import Message
+from email import message_from_string
+from interfaces import IThemeSpecific
+from plone.browserlayer.utils import registered_layers
 
 def patchedSend(self, mfrom, mto, messageText, immediate=False):
     """ Send the message """
+    if IThemeSpecific in registered_layers():
+        patchedEmailAddress = getMailAddress()
+        if patchedEmailAddress:
+            mto = patchedEmailAddress
+            if isinstance(messageText, Message):
+                # We already have a message, make a copy to operate on
+                mo = deepcopy(messageText)
+            else:
+                # Otherwise parse the input message
+                mo = message_from_string(messageText)
+            if mo.get('Bcc'):
+                del mo['Bcc']
+            if mo.get('Cc'):
+                del mo['Cc']
+            mo['To'] = mto
+            messageText = mo.as_string()
 
-    patchedEmailAddress = getMailAddress()
-    if patchedEmailAddress:
-        mto = patchedEmailAddress
 
     if immediate:
         self._makeMailer().send(mfrom, mto, messageText)
