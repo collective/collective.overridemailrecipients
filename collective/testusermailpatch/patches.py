@@ -24,8 +24,8 @@ def patchedSend(self, mfrom, mto, messageText, immediate=False):
 
 def getMailAddress():
     registry = getUtility(IRegistry)
-    email = registry['collective.testusermailpatch.configpanel.IMailPatchSettings.email']
-    enabled = registry['collective.testusermailpatch.configpanel.IMailPatchSettings.enabled']
+    email = registry.get('collective.testusermailpatch.configpanel.IMailPatchSettings.email')
+    enabled = registry.get('collective.testusermailpatch.configpanel.IMailPatchSettings.enabled')
     print email, enabled
-    if enabled:
+    if enabled and email:
         return email
