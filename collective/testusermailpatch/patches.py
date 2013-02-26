@@ -23,6 +23,8 @@ def patchedSend(self, mfrom, mto, messageText, immediate=False):
                 del mo['Bcc']
             if mo.get('Cc'):
                 del mo['Cc']
+            if mo.get('To'):
+                del mo['To']
             mo['To'] = mto
             messageText = mo.as_string()
 
