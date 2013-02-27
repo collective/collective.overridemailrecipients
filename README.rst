@@ -3,7 +3,7 @@ Introduction
 
 collective.overridemailrecipients forwards all mails sent from Plone. Use this package on testing and development environments where you want to test emails sent thru Plone, but not want to use the real addresses.
 
-This package is always active by patching. The recipient(s) in the 'To' header are replaced by 'plone@localhost' or configurable mail address.
+This package is always active by patching MailHost. The recipient(s) in the 'To' header are replaced by 'plone@localhost' or a configurable mail address.
 
 Features
 ========
@@ -33,11 +33,13 @@ After installation this packages is configurable thru the site setup
 TODO
 ====
 
+- Add tests
+
+
 Changelog
 =========
 
-0.5dev (2012-06-13)
+0.5dev (2013-02-28)
 ----------------
 - Initial release
 
-- Add tests
