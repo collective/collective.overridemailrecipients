@@ -12,12 +12,12 @@ class IMailPatchSettings(Interface):
 
     email=schema.TextLine(
         title=u"Email address",
-        description=u"This email address is used as recipient for all mails sent thru Plone",
+        description=u"Mails are always sent to 'plone@localhost', enter an email address to change de default address.",
         required=False,
     )
     enabled=schema.Bool(
         title=u"Enabled",
-        description=u"When enabled all mail is sent to above mail address.",
+        description=u"Disable mail forwarding.",
     )
 
 class SettingsEditForm(RegistryEditForm):
@@ -25,7 +25,7 @@ class SettingsEditForm(RegistryEditForm):
     Define form logic
     """
     schema = IMailPatchSettings
-    description = u"Sent all mails sent in Plone to one email address"
+    description = u"Sent all mails to one email address"
 
 
 SettingsView = layout.wrap_form(SettingsEditForm, ControlPanelFormWrapper)

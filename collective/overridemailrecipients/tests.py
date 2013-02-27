@@ -31,7 +31,7 @@ def test_suite():
 
         # Unit tests
         #doctestunit.DocFileSuite(
-        #    'README.txt', package='collective.overridemailrecipients',
+        #    'README.rst', package='collective.overridemailrecipients',
         #    setUp=testing.setUp, tearDown=testing.tearDown),
 
         #doctestunit.DocTestSuite(
@@ -41,7 +41,7 @@ def test_suite():
 
         # Integration tests that use PloneTestCase
         #ztc.ZopeDocFileSuite(
-        #    'README.txt', package='collective.overridemailrecipients',
+        #    'README.rst', package='collective.overridemailrecipients',
         #    test_class=TestCase),
 
         #ztc.FunctionalDocFileSuite(

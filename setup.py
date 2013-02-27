@@ -6,7 +6,7 @@ version = '0.5'
 setup(name='collective.overridemailrecipients',
       version=version,
       description="",
-      long_description=open("README.txt").read() + "\n" +
+      long_description=open("README.rst").read() + "\n" +
                        open(os.path.join("docs", "HISTORY.txt")).read(),
       # Get more strings from
       # http://pypi.python.org/pypi?:action=list_classifiers
@@ -15,8 +15,8 @@ setup(name='collective.overridemailrecipients',
         "Programming Language :: Python",
         ],
       keywords='',
-      author='',
-      author_email='',
+      author='Goldmund, Wyldebeast & Wunderliebe',
+      author_email='info@gw20e.com',
       url='http://svn.plone.org/svn/collective/',
       license='GPL',
       packages=find_packages(exclude=['ez_setup']),

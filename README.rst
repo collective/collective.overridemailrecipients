@@ -33,4 +33,11 @@ After installation this packages is configurable thru the site setup
 TODO
 ====
 
+Changelog
+=========
+
+0.5dev (2012-06-13)
+----------------
+- Initial release
+
 - Add tests
