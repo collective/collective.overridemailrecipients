@@ -13,16 +13,20 @@ class IMailPatchSettings(Interface):
     email = schema.TextLine(title = u"Test user enmail address",
                             description = u"Email address to send all mails in the test environment",
                             required = False)
-    enabled = schema.Bool(title = u"Enabled",
+    enabled_plone = schema.Bool(title = u"Enabled",
                           description = u"If the patch is enabled all mails will be sent to provided email address")
+
+    enabled_env = schema.Bool(title = u"Enabled",
+                                description = u"If the patch is enabled all mails will be sent to provided email address")
+
 
 class SettingsEditForm(RegistryEditForm):
     """
     Define form logic
     """
     schema = IMailPatchSettings
-    label = u"Mail patch settings"
-
+    label = u"Override email recipient settings"
+    description = u"Override the recipients in all emails sent"
 
 
 SettingsView = layout.wrap_form(SettingsEditForm, ControlPanelFormWrapper)

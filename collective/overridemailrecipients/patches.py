@@ -7,6 +7,9 @@ from email import message_from_string
 from interfaces import IThemeSpecific
 from plone.browserlayer.utils import registered_layers
 
+import logging
+logger = logging.getLogger("Plone")
+
 def patchedSend(self, mfrom, mto, messageText, immediate=False):
     """ Send the message """
     if IThemeSpecific in registered_layers():
@@ -43,8 +46,11 @@ def patchedSend(self, mfrom, mto, messageText, immediate=False):
 
 def getMailAddress():
     registry = getUtility(IRegistry)
-    email = registry.get('collective.testusermailpatch.configpanel.IMailPatchSettings.email')
-    enabled = registry.get('collective.testusermailpatch.configpanel.IMailPatchSettings.enabled')
+    email = registry.get('collective.overridemailrecipients.configpanel.IMailPatchSettings.email')
+    enabled_plone = registry.get('collective.overridemailrecipients.configpanel.IMailPatchSettings.enabled_plone')
+    enabled_env = registry.get('collective.overridemailrecipients.configpanel.IMailPatchSettings.enabled_env')
+
     print email, enabled
-    if enabled and email:
+    if enabled_plone or enabled_env and email:
+        logger.info("Changing recipient {0}".format(email))
         return email

@@ -3,7 +3,7 @@ import os
 
 version = '0.5'
 
-setup(name='collective.testusermailpatch',
+setup(name='collective.overridemailrecipients',
       version=version,
       description="",
       long_description=open("README.txt").read() + "\n" +

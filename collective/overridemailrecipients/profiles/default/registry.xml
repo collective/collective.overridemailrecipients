@@ -2,6 +2,7 @@
   <records interface="collective.testusermailpatch.configpanel.IMailPatchSettings"
            prefix="collective.testusermailpatch.configpanel.IMailPatchSettings">
     <value key="email"></value>
-    <value key="enabled">True</value>
+      <value key="enabled_plone">True</value>
+      <value key="enabled_env">True</value>
   </records>
 </registry>

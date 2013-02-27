@@ -11,7 +11,6 @@ ptc.setupPloneSite()
 
 import collective.testusermailpatch
 
-
 class TestCase(ptc.PloneTestCase):
 
     class layer(PloneSite):
@@ -32,21 +31,21 @@ def test_suite():
 
         # Unit tests
         #doctestunit.DocFileSuite(
-        #    'README.txt', package='collective.testusermailpatch',
+        #    'README.txt', package='collective.overridemailrecipients',
         #    setUp=testing.setUp, tearDown=testing.tearDown),
 
         #doctestunit.DocTestSuite(
-        #    module='collective.testusermailpatch.mymodule',
+        #    module='collective.overridemailrecipients.mymodule',
         #    setUp=testing.setUp, tearDown=testing.tearDown),
 
 
         # Integration tests that use PloneTestCase
         #ztc.ZopeDocFileSuite(
-        #    'README.txt', package='collective.testusermailpatch',
+        #    'README.txt', package='collective.overridemailrecipients',
         #    test_class=TestCase),
 
         #ztc.FunctionalDocFileSuite(
-        #    'browser.txt', package='collective.testusermailpatch',
+        #    'browser.txt', package='collective.overridemailrecipients',
         #    test_class=TestCase),
 
         ])

@@ -5,7 +5,7 @@
     i18n:domain="collective.testusermailpatch">
 
     <configlet
-        title="Test user mail settings"
+        title="Override email recipient settings"
         action_id="testusermailpatch.settings"
         appId="testusermailpatch"
         category="Products"
