@@ -1,12 +1,15 @@
 Introduction
 ============
 
-collective.overridemailrecipients prevents sending mail when this is not wanted. When enabled the email addresses of the recipients are changed to a given address.
+collective.overridemailrecipients forwards all mails sent from Plone. Use this package on testing and development environments where you want to test emails sent thru Plone, but not want to use the real addresses.
+
+This package is always active by patching. The recipient(s) in the 'To' header are replaced by 'plone@localhost' or configurable mail address.
 
 Features
 ========
 
-- All emails sent thru the Plone mailer
+- All emails sent thru the Plone mailer are forwarded to one mail address
+- Bcc and Cc headers are stripped
 
 Installation
 ============
@@ -22,14 +25,12 @@ After that, just install via the "Add-on" controlpanel.
 Usage
 =====
 
-To do
-=====
+After installation this packages is configurable thru the site setup
 
-- Event IUsefulnessEvent seems only to be fired for non-folderish items
-- Show warning when viewing settings of item that is default view (like Topic
-  `aggregator` in News Folder).
-- Show number of ratings
-- Integrate with collective.contentratings_
-- Translate rating value ("Yes"/"No") in content rule e-mail
+- Email address, this address is used to forward mails to
+- Enabled or disable or disable mail forwardind
 
-.. _collective.contentratings: http://pypi.python.org/pypi/plone.contentratings
+TODO
+====
+
+- Add tests

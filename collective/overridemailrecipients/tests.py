@@ -9,7 +9,7 @@ from Products.PloneTestCase import PloneTestCase as ptc
 from Products.PloneTestCase.layer import PloneSite
 ptc.setupPloneSite()
 
-import collective.testusermailpatch
+import collective.overridemailrecipients
 
 class TestCase(ptc.PloneTestCase):
 
@@ -18,7 +18,7 @@ class TestCase(ptc.PloneTestCase):
         @classmethod
         def setUp(cls):
             fiveconfigure.debug_mode = True
-            ztc.installPackage(collective.testusermailpatch)
+            ztc.installPackage(collective.overridemailrecipients)
             fiveconfigure.debug_mode = False
 
         @classmethod

@@ -1,35 +1,34 @@
-from zope.component import getUtility
-from plone.registry.interfaces import IRegistry
-from zope.sendmail.delivery import DirectMailDelivery, QueuedMailDelivery
+import os
 from copy import deepcopy
 from email.Message import Message
 from email import message_from_string
 from interfaces import IThemeSpecific
-from plone.browserlayer.utils import registered_layers
+from zope.component import getUtility
+from zope.sendmail.delivery import DirectMailDelivery, QueuedMailDelivery
+from plone.registry.interfaces import IRegistry
 
 import logging
 logger = logging.getLogger("Plone")
 
 def patchedSend(self, mfrom, mto, messageText, immediate=False):
     """ Send the message """
-    if IThemeSpecific in registered_layers():
-        patchedEmailAddress = getMailAddress()
-        if patchedEmailAddress:
-            mto = patchedEmailAddress
-            if isinstance(messageText, Message):
-                # We already have a message, make a copy to operate on
-                mo = deepcopy(messageText)
-            else:
-                # Otherwise parse the input message
-                mo = message_from_string(messageText)
-            if mo.get('Bcc'):
-                del mo['Bcc']
-            if mo.get('Cc'):
-                del mo['Cc']
-            if mo.get('To'):
-                del mo['To']
-            mo['To'] = mto
-            messageText = mo.as_string()
+    patchedEmailAddress = getMailAddress()
+    if patchedEmailAddress:
+        mto = patchedEmailAddress
+        if isinstance(messageText, Message):
+            # We already have a message, make a copy to operate on
+            mo = deepcopy(messageText)
+        else:
+            # Otherwise parse the input message
+            mo = message_from_string(messageText)
+        if mo.get('Bcc'):
+            del mo['Bcc']
+        if mo.get('Cc'):
+            del mo['Cc']
+        if mo.get('To'):
+            del mo['To']
+        mo['To'] = mto
+        messageText = mo.as_string()
 
 
     if immediate:
@@ -46,11 +45,15 @@ def patchedSend(self, mfrom, mto, messageText, immediate=False):
 
 def getMailAddress():
     registry = getUtility(IRegistry)
-    email = registry.get('collective.overridemailrecipients.configpanel.IMailPatchSettings.email')
-    enabled_plone = registry.get('collective.overridemailrecipients.configpanel.IMailPatchSettings.enabled_plone')
-    enabled_env = registry.get('collective.overridemailrecipients.configpanel.IMailPatchSettings.enabled_env')
+    email = registry.get(
+        'collective.overridemailrecipients.configpanel.IMailPatchSettings.email',
+        'plone@localhost'
+    )
+    enabled = registry.get(
+        'collective.overridemailrecipients.configpanel.IMailPatchSettings.enabled',
+        True
+    )
 
-    print email, enabled
-    if enabled_plone or enabled_env and email:
+    if enabled:
         logger.info("Changing recipient {0}".format(email))
         return email

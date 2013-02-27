@@ -1,8 +1,7 @@
 <registry>
-  <records interface="collective.testusermailpatch.configpanel.IMailPatchSettings"
-           prefix="collective.testusermailpatch.configpanel.IMailPatchSettings">
+  <records interface="collective.overridemailrecipients.configpanel.IMailPatchSettings"
+           prefix="collective.overridemailrecipients.configpanel.IMailPatchSettings">
     <value key="email"></value>
-      <value key="enabled_plone">True</value>
-      <value key="enabled_env">True</value>
+    <value key="enabled">True</value>
   </records>
 </registry>

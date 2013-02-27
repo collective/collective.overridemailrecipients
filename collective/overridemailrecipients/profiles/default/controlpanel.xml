@@ -2,15 +2,15 @@
 <object
     name="portal_controlpanel"
     xmlns:i18n="http://xml.zope.org/namespaces/i18n"
-    i18n:domain="collective.testusermailpatch">
+    i18n:domain="collective.overridemailrecipients">
 
     <configlet
-        title="Override email recipient settings"
-        action_id="testusermailpatch.settings"
-        appId="testusermailpatch"
+        title="collective.overridemailrecipient"
+        action_id="overridemailrecipients.settings"
+        appId="overridemailrecipients"
         category="Products"
         condition_expr=""
-        url_expr="string:${portal_url}/@@testusermailpatch-settings"
+        url_expr="string:${portal_url}/@@overridemailrecipients-settings"
         icon_expr=""
         visible="True"
         i18n:attributes="title">

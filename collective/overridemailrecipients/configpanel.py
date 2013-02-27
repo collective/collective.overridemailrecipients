@@ -10,24 +10,23 @@ from plone.app.registry.browser.controlpanel import ControlPanelFormWrapper
 class IMailPatchSettings(Interface):
     """ Define settings data structure """
 
-    email = schema.TextLine(title = u"Test user enmail address",
-                            description = u"Email address to send all mails in the test environment",
-                            required = False)
-    enabled_plone = schema.Bool(title = u"Enabled",
-                          description = u"If the patch is enabled all mails will be sent to provided email address")
-
-    enabled_env = schema.Bool(title = u"Enabled",
-                                description = u"If the patch is enabled all mails will be sent to provided email address")
-
+    email=schema.TextLine(
+        title=u"Email address",
+        description=u"This email address is used as recipient for all mails sent thru Plone",
+        required=False,
+    )
+    enabled=schema.Bool(
+        title=u"Enabled",
+        description=u"When enabled all mail is sent to above mail address.",
+    )
 
 class SettingsEditForm(RegistryEditForm):
     """
     Define form logic
     """
     schema = IMailPatchSettings
-    label = u"Override email recipient settings"
-    description = u"Override the recipients in all emails sent"
+    description = u"Sent all mails sent in Plone to one email address"
 
 
 SettingsView = layout.wrap_form(SettingsEditForm, ControlPanelFormWrapper)
-SettingsView.label = u"Mail patch settings"
+SettingsView.label = u"collective.overridemailrecipient"
