@@ -33,6 +33,5 @@ After installation this packages is configurable thru the site setup
 TODO
 ====
 
-Changelog
-=========
-
+- Create tests
+- Add to, cc and bcc in forwarded mail
