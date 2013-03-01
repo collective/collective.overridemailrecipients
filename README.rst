@@ -36,8 +36,3 @@ TODO
 Changelog
 =========
 
-0.5dev (2012-06-13)
-----------------
-- Initial release
-
-- Add tests
