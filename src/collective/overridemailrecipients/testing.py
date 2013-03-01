@@ -2,19 +2,18 @@ from plone.app.testing import PloneWithPackageLayer
 from plone.app.testing import IntegrationTesting
 from plone.app.testing import FunctionalTesting
 
-import collective.testusermailpatch
+import collective.overridemailrecipients
 
-
-OPSB_CONTENT = PloneWithPackageLayer(
-    zcml_package=collective.testusermailpatch,
+TEST_LAYER = PloneWithPackageLayer(
+    zcml_package=collective.overridemailrecipients,
     zcml_filename='testing.zcml',
-    gs_profile_id='collective.testusermailpatch:testing',
-    name="OPSB_CONTENT")
+    gs_profile_id='collective.overridemailrecipients:testing',
+    name="TEST_LAYER")
 
-OPSB_CONTENT_INTEGRATION = IntegrationTesting(
-    bases=(OPSB_CONTENT, ),
-    name="OPSB_CONTENT_INTEGRATION")
+TEST_LAYER_INTEGRATION = IntegrationTesting(
+    bases=(TEST_LAYER, ),
+    name="TEST_LAYER_INTEGRATION")
 
-OPSB_CONTENT_FUNCTIONAL = FunctionalTesting(
-    bases=(OPSB_CONTENT, ),
-    name="OPSB_CONTENT_FUNCTIONAL")
+TEST_LAYER_FUNCTIONAL = FunctionalTesting(
+    bases=(TEST_LAYER, ),
+    name="TEST_LAYER_FUNCTIONAL")

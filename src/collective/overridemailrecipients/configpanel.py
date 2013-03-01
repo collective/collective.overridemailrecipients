@@ -14,10 +14,12 @@ class IMailPatchSettings(Interface):
         title=u"Email address",
         description=u"Mails are always sent to 'plone@localhost', enter an email address to change de default address.",
         required=False,
+        default=u'plone@localhost'
     )
     enabled=schema.Bool(
         title=u"Enabled",
         description=u"Disable mail forwarding.",
+        default=True
     )
 
 class SettingsEditForm(RegistryEditForm):

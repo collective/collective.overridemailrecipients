@@ -3,15 +3,15 @@
     xmlns:five="http://namespaces.zope.org/five"
     xmlns:i18n="http://namespaces.zope.org/i18n"
     xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
-    i18n_domain="collective.testusermailpatch">
+    i18n_domain="collective.overridemailrecipients">
 
   <include file="configure.zcml" />
 
   <genericsetup:registerProfile
       name="testing"
-      title="collective.testusermailpatch tests"
+      title="collective.overridemailrecipients tests"
       directory="profiles/testing"
-      description="Steps to ease tests of collective.testusermailpatch"
+      description="Steps to ease tests of collective.overridemailrecipients"
       provides="Products.GenericSetup.interfaces.EXTENSION"
       />
 

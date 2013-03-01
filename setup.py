@@ -3,27 +3,23 @@ import os
 
 version = '0.5'
 
-long_description = (
-    open('README.rst').read()
-    + '\n' +
-    'Contributors\n'
-    '============\n'
-    + '\n' +
-    open('CONTRIBUTORS.txt').read()
-    + '\n' +
-    open('CHANGES.txt').read()
-    + '\n')
-
 setup(name='collective.overridemailrecipients',
       version=version,
       description="",
-      long_description=long_description,
+      long_description=open("README.rst").read() + "\n" +
+                       open(os.path.join("docs", "HISTORY.txt")).read() + "\n",
       # Get more strings from
       # http://pypi.python.org/pypi?:action=list_classifiers
       classifiers=[
-        "Framework :: Plone",
-        "Programming Language :: Python",
-        "Topic :: Software Development :: Libraries :: Python Modules",
+          "Topic :: Software Development :: Libraries :: Python Modules",
+          "License :: OSI Approved :: GNU General Public License (GPL)",
+          "Operating System :: OS Independent",
+          "Programming Language :: Python",
+          "Environment :: Web Environment",
+          "Framework :: Plone",
+          "Framework :: Plone :: 4.0",
+          "Framework :: Plone :: 4.1",
+          "Framework :: Plone :: 4.2",
         ],
       keywords='',
       author='Goldmund, Wyldebeast & Wunderliebe',
@@ -38,6 +34,12 @@ setup(name='collective.overridemailrecipients',
       install_requires=[
           'collective.monkeypatcher'
       ],
+      extras_require={
+          'test': [
+              'plone.app.testing',
+              'mock',
+           ],
+      },      
       entry_points="""
       # -*- Entry points: -*-
 

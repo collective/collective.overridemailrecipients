@@ -2,7 +2,6 @@ import os
 from copy import deepcopy
 from email.Message import Message
 from email import message_from_string
-from interfaces import IThemeSpecific
 from zope.component import getUtility
 from zope.sendmail.delivery import DirectMailDelivery, QueuedMailDelivery
 from plone.registry.interfaces import IRegistry
@@ -12,7 +11,7 @@ logger = logging.getLogger("Plone")
 
 def patchedSend(self, mfrom, mto, messageText, immediate=False):
     """ Send the message """
-    patchedEmailAddress = getMailAddress()
+    patchedEmailAddress = get_mail_address()
     if patchedEmailAddress:
         mto = patchedEmailAddress
         if isinstance(messageText, Message):
@@ -43,16 +42,19 @@ def patchedSend(self, mfrom, mto, messageText, immediate=False):
 
         delivery.send(mfrom, mto, messageText)
 
-def getMailAddress():
+def get_mail_address():
     registry = getUtility(IRegistry)
     email = registry.get(
         'collective.overridemailrecipients.configpanel.IMailPatchSettings.email',
         'plone@localhost'
     )
     enabled = registry.get(
-        'collective.overridemailrecipients.configpanel.IMailPatchSettings.enabled',
-        True
+        'collective.overridemailrecipients.configpanel.IMailPatchSettings.enabled'
     )
+
+    # Mail forwarding is enabled by default
+    if type(enabled) == type(None):
+        enabled = True
 
     if enabled:
         logger.info("Changing recipient {0}".format(email))

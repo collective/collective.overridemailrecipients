@@ -35,3 +35,9 @@ TODO
 
 - Create tests
 - Add to, cc and bcc in forwarded mail
+
+Contributors
+============
+- Pawel Lewicki <lewicki@gw20e.com>
+- Kim Chee Leong <leong@gw20e.com>
+
