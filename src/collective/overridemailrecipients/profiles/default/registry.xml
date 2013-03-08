@@ -1,7 +1,7 @@
 <registry>
   <records interface="collective.overridemailrecipients.configpanel.IMailPatchSettings"
            prefix="collective.overridemailrecipients.configpanel.IMailPatchSettings">
-    <value key="email"></value>
+    <value key="email">plone@localhost</value>
     <value key="enabled">True</value>
   </records>
 </registry>

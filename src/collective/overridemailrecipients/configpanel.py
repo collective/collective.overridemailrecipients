@@ -12,8 +12,8 @@ class IMailPatchSettings(Interface):
 
     email=schema.TextLine(
         title=u"Email address",
-        description=u"Mails are always sent to 'plone@localhost', enter an email address to change de default address.",
-        required=False,
+        description=u"Mails are always sent to 'plone@localhost', enter an email address to change the default address.",
+        required=True,
         default=u'plone@localhost'
     )
     enabled=schema.Bool(
