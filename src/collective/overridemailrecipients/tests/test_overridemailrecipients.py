@@ -110,12 +110,10 @@ class TestOverrideMailRecipients(unittest.TestCase):
         email = registry.get(REG_MAIL)
         enabled = registry.get(REG_ENABLED)
 
-        self.assertFalse(email, None)
+        self.assertEqual(email, u'plone@localhost')
         self.assertTrue(enabled, None)
 
         # When registry is 'empty', the default value is returned
-        import pdb; pdb.set_trace()
-        get_mail_address()
         self.assertEqual(get_mail_address(), u'plone@localhost')
 
         # When registry value is stored, default value is returned
@@ -125,6 +123,7 @@ class TestOverrideMailRecipients(unittest.TestCase):
 
         # Registry is enabled and has a stored mail address
         # registry.records[REG_MAIL] = Record(field.TextLine(title=u'mail'), u'henk@example.org')
+        registry[REG_MAIL] = u'henk@example.org'
         self.assertEqual(get_mail_address(), u'henk@example.org')
 
         # Disable registry
@@ -136,12 +135,28 @@ class TestOverrideMailRecipients(unittest.TestCase):
         self._reinstall()
 
         browser = Browser(self.app)
+
+        # Login as site owner
+        browser.open('{0}/login_form'.format(self.portal.absolute_url()))
+        browser.getControl(name='__ac_name').value = SITE_OWNER_NAME
+        browser.getControl(name='__ac_password').value = SITE_OWNER_PASSWORD
+        browser.getControl(name='submit').click()
+  
         browser.open('{0}/@@overridemailrecipients-settings'.format(self.portal.absolute_url()))
         self.assertEqual(
             browser.headers['status'], '200 Ok',
             u'Control panel is not available'
         )
 
+        # Change mail address
+        browser.getControl(label='Email address').value = u'henk@example.org'
+        browser.getControl(label='Save').click()
+
+        # Disable override
+        browser.open('{0}/@@overridemailrecipients-settings'.format(self.portal.absolute_url()))
+        browser.getControl(label='Enabled').selected=False
+        browser.getControl(label='Save').click()
+        self.assertEqual(get_mail_address(), None)
 
     def _reinstall(self):
         """ We must uninstall and install the package, it seems generic setup profile
