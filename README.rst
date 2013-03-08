@@ -33,7 +33,6 @@ After installation this packages is configurable thru the site setup
 TODO
 ====
 
-- Create tests
 - Add to, cc and bcc in forwarded mail
 
 Contributors

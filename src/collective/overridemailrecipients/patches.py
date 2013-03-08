@@ -48,6 +48,7 @@ def get_mail_address():
         'collective.overridemailrecipients.configpanel.IMailPatchSettings.email',
         'plone@localhost'
     )
+    email = email or 'plone@localhost'  # Make sure we have a dummy address at all times
     enabled = registry.get(
         'collective.overridemailrecipients.configpanel.IMailPatchSettings.enabled'
     )
